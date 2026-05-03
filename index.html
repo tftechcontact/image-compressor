@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>compressor</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Libraries (CDN) -->
+  <!-- <script src=""></script> -->
+  <script src="https://unpkg.com/browser-image-compression@1.0.15/dist/browser-image-compression.js"></script>
+  <!-- db check l8 --> <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  
+  <header>
+    <h1>compressor</h1>
+    <p class="tagline"> • compress images</p>
+  </header>
+
+  <nav class="tabs">
+    <!-- <button data-tab="" > </button> --> 
+    <button data-tab="compress">Compress</button>
+    <button data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <!-- <section>
+      <p id="pdf-status">Selected images: 0</p>
+    </section> -->
+
+    <!-- Compress Tab -->
+    <section id="tab-compress" class="tabpane">
+      <h2>Compress Images</h2>
+      <input id="compress-input" type="file" accept="image/*" multiple />
+      <label for="quality-range">Quality: <span id="quality-label">0.7</span></label>
+      <input id="quality-range" type="range" min="10" max="95" value="70" />
+      <div class="row">
+        <button id="btn-compress">Compress Selected</button>
+        <button id="btn-download-all" disabled>Download All</button>
+      </div>
+      <div id="compress-results"></div>
+    </section>
+
+    <!-- Settings Tab 
+    <section id="tab-settings" class="tabpane">
+      <h2>Settings</h2>
+      <p>Remove Ads (future), About, Help</p>
+      <p class="small">This PWA is a simple local-first tool. No backend required.</p>
+    </section> -->
+  </main>
+
+  <footer>
+    <p>compressor — web PWA MVP</p>
+  </footer>
+
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(function(error) {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}
+</script>
+
+</body>
+</html>
